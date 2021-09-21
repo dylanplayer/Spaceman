@@ -16,20 +16,56 @@ def load_word():
     secret_word = random.choice(words_list)
     return secret_word
 
+def isInWord(secret_word, guess):
+    for letter in secret_word:
+        if letter == guess:
+            return True
+    return False
+
+def getIndexsOf(secret_word, letter):
+    indexes = []
+    for i in range(len(secret_word)):
+        if letter == secret_word[i]:
+            indexes.append(i)
+    return indexes
+
+def toString(guessedLetters):
+    str = ''
+    for letter in guessedLetters:
+        str += letter
+    return str
+
 def spaceman(secret_word):
     
     gameIsOver = False
     gameIsWin = False
-    
-    guessedLetters = ''
+    incorrectGuesses = 0
+    guessedLetters = []
     for i in range(len(secret_word)):
-        guessedLetters += "_"
+        guessedLetters.append("_")
 
-    print(guessedLetters)
-    # while(not gameIsOver):
+    while(not gameIsOver):
+        guess = input("Guess a letter: ")
+        if isInWord(secret_word, guess):
+            indexesOfLetter = getIndexsOf(secret_word, guess)
+            for i in indexesOfLetter:
+                guessedLetters[i] = guess
+            if toString(guessedLetters) == secret_word:
+                gameIsOver = True
+                gameIsWin = True
+        else:
+            incorrectGuesses += 1
+            if incorrectGuesses == 7:
+                gameIsOver = True
+        print(f"Guess: {toString(guessedLetters)}\n{7 - incorrectGuesses} guesses left")
 
+    if gameIsWin:
+        print("You Win")
+    else:
+        print("You Lose")
 
 
 #These function calls that will start the game
 secret_word = load_word()
+print(secret_word)
 spaceman(secret_word)
