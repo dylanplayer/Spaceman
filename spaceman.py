@@ -71,9 +71,13 @@ def spaceman(secret_word):
     else:
         print(f"You Lose the word was {secret_word}")
 
+asciiFile = open('ascii.txt', 'r')
+asciiArray = asciiFile.readlines()
+for line in asciiArray:
+    print(line, end="")
+asciiFile.close()
+print()
 
-#These function calls that will start the game
 secret_word = load_word()
-print(secret_word)
 spaceman(secret_word)
 
