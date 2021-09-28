@@ -17,12 +17,28 @@ def load_word():
     return secret_word
 
 def isInWord(secret_word, guess):
+    """
+    Returns boolean based on if the guessed letter is in the secret word
+        Parameters:
+            a(str): secret word
+            b(guess): guessed letter
+        Returns:
+            a(boolean): if guessed letter is in secret word
+    """
     for letter in secret_word:
         if letter == guess:
             return True
     return False
 
 def getIndexsOf(secret_word, letter):
+    """
+    Returns a list of indexs with a specific letter
+        Parameters:
+            a(str): secret word
+            b(list): letter you want to find
+        Returns:
+            a(list): list of indexes where a specific letter exists
+    """
     indexes = []
     for i in range(len(secret_word)):
         if letter == secret_word[i]:
@@ -30,13 +46,26 @@ def getIndexsOf(secret_word, letter):
     return indexes
 
 def toString(guessedLetters):
+    """
+    Returns the contents of an array as a string
+        Parameters:
+            a(list): list of characters
+        Returns:
+            a(str): string with list of e
+    """
     str = ''
     for letter in guessedLetters:
         str += letter
     return str
 
 def spaceman(secret_word):
-    
+    """
+    Controls Game and Game State
+        Parameters:
+            a(string): secret word game
+        Returns:
+            None
+    """
     gameIsOver = False
     gameIsWin = False
     incorrectGuesses = 0
